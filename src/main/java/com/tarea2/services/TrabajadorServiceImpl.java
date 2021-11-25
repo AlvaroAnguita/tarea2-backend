@@ -38,5 +38,16 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 	public void deleteById(Long id) {
 		trabajadorDao.deleteById(id);
 	}
+	
+	@Override
+	@Transactional
+	public Trabajador findByEP(String email, String pass) {
+		return trabajadorDao.findyByEmailAndPass(email, pass);
+	}
 
+	@Override
+	@Transactional
+	public Trabajador findByE(String email) {
+		return trabajadorDao.findyByEmail(email);
+	}
 }

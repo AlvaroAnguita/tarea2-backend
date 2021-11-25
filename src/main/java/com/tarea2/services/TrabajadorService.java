@@ -12,6 +12,10 @@ public interface TrabajadorService {
 		
 	public Trabajador findById(Long id);
 	
+	public Trabajador findByEP(String email, String pass);
+	
+	public Trabajador findByE(String email);
+	
 	public Trabajador save(Trabajador trabajador);
 	
 	public void deleteById(Long id);
