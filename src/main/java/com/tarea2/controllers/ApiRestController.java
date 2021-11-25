@@ -83,8 +83,8 @@ public class ApiRestController {
 	
 	
 	//SHOW Projects
-	@GetMapping
-	public ResponseEntity<?> showProject(@RequestParam Proyecto proyecto){
+	@GetMapping("/proyectos")
+	public ResponseEntity<?> showProject(){
 		Map<String, Object> response = new HashMap<String, Object>();
 		try {
 			proyectoService.findAll();
@@ -97,7 +97,7 @@ public class ApiRestController {
 		return new ResponseEntity<Map<String, Object>> (response, HttpStatus.OK);
 	}
 	
-	
+	@GetMapping("/proyectos/{id}")
 	public ResponseEntity<?> showProjectById(@PathVariable Long id){
 		Map<String,Object> response = new HashMap<String, Object>();
 		try {
@@ -110,11 +110,7 @@ public class ApiRestController {
 		}
 		response.put("Exitoso", "Se muestra proyecto con id: "+id);
 		return new ResponseEntity<Map<String,Object>> (response, HttpStatus.OK);
-		
-		
 	}
-	
-	
 }
 	
 	
