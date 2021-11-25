@@ -1,9 +1,7 @@
 package com.tarea2.services;
 
-import java.util.LinkedList;
 import java.util.List;
 
-import com.tarea2.entity.Grupo;
 import com.tarea2.entity.Trabajador;
 
 public interface TrabajadorService {
@@ -15,7 +13,5 @@ public interface TrabajadorService {
 	public Trabajador save(Trabajador trabajador);
 	
 	public void deleteById(Long id);
-	
-
 	
 }
