@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tarea2.entity.Proyecto;
 import com.tarea2.entity.Trabajador;
 import com.tarea2.services.GrupoService;
 import com.tarea2.services.ProyectoService;
@@ -85,7 +86,7 @@ public class ApiRestController {
 			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if(t==null) {
-			response.put("mensaje", "El cliente ID: ".concat(id.toString().concat(" no existe en la base de datos")));
+			response.put("mensaje", "El trabajador ID: ".concat(" no existe en la base de datos"));
 			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Trabajador>(t,HttpStatus.OK);
@@ -143,6 +144,52 @@ public class ApiRestController {
 		return new ResponseEntity<Map<String, Object>>(response,HttpStatus.CREATED);
 	}
 	
-	
+	//CRUD
+		//POST Project
+		@PostMapping("/proyectos")
+		public ResponseEntity<?> createProject(@RequestBody Proyecto proyecto) {
+			Map<String, Object> response = new HashMap<>();
+				try {
+					proyectoService.save(proyecto);
+
+				} catch (DataAccessException e) {
+					response.put("Mensaje", "No se puede crear el proyecto");
+					response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+				response.put("Existoso", "Se ha creado el proyecto correctamente");
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		}	
+		
+		
+		//SHOW Projects
+		@GetMapping("/proyectos")
+		public ResponseEntity<?> showProject(){
+			Map<String, Object> response = new HashMap<String, Object>();
+			try {
+				proyectoService.findAll();
+			} catch (DataAccessException e) {
+				response.put("Error", "No se puede mostrar los proyectos");
+				response.put("Incorrecto", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+				return new ResponseEntity<Map<String,Object>> (response, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			response.put("Existoso", "Se muestran los proyectos");
+			return new ResponseEntity<Map<String, Object>> (response, HttpStatus.OK);
+		}
+		
+		@GetMapping("/proyectos/{id}")
+		public ResponseEntity<?> showProjectById(@PathVariable Long id){
+			Map<String,Object> response = new HashMap<String, Object>();
+			try {
+				proyectoService.findById(id);
+			} catch (DataAccessException e) {
+				response.put("Error", "No se puede mostrar el proyecto con id: "+id);
+				response.put("Incorrecto", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+				return new ResponseEntity<Map<String, Object>> (response, HttpStatus.OK);
+		
+			}
+			response.put("Exitoso", "Se muestra proyecto con id: "+id);
+			return new ResponseEntity<Map<String,Object>> (response, HttpStatus.OK);
+		}
 
 }
