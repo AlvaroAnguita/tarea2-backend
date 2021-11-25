@@ -12,9 +12,7 @@ import javax.persistence.Table;
 import com.tarea2.enums.Activo;
 
 @Entity
-@Table(name = "trabajador")
-
-
+@Table(name = "trabajadores")
 public class Trabajador implements Serializable {
 	
 	@Id
