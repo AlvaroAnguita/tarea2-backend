@@ -34,7 +34,7 @@ public class Trabajador implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Column(nullable = false, unique = true)
+	@Column(unique = true)
 	private int telefono;
 	
 	private String direccion;
@@ -52,6 +52,12 @@ public class Trabajador implements Serializable {
 	@ManyToMany
 	private LinkedList<Grupo> grupos;
 	
+	
+	public Trabajador() {
+		this.admin=false;
+		this.estado=estado.ACTIVO;
+	}
+
 	public long getId() {
 		return id;
 	}
