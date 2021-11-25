@@ -1,8 +1,13 @@
 package com.tarea2.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.tarea2.dao.ProyectoDao;
+import com.tarea2.entity.Proyecto;
 
 @Service
 public class ProyectoServiceImpl implements ProyectoService {

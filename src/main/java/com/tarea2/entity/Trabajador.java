@@ -2,17 +2,13 @@ package com.tarea2.entity;
 
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.tarea2.enums.Activo;
@@ -151,8 +147,14 @@ public class Trabajador implements Serializable {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	
 
+	public LinkedList<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(LinkedList<Grupo> grupos) {
+		this.grupos = grupos;
+	}
 
 	private static final long serialVersionUID = -4452527777282732761L;
 }

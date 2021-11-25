@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tarea2.dao.TrabajadorDao;
 import com.tarea2.entity.Trabajador;
 
+@Service
 public class TrabajadorServiceImpl implements TrabajadorService {
 
 	@Autowired
